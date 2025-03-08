@@ -2,7 +2,7 @@
 
 Heads up display for Balance Druid eclipse procs (TWoW).
 
-![Image showing preview of HUD interface](https://github.com/mdmnky/DruidEclipseMonitor/blob/master/DruidEclipseMonitor.png?raw=true)
+![Image showing preview of HUD interface](https://github.com/mdmnky/druid-eclipse-monitor/blob/master/DruidEclipseMonitor.png?raw=true)
 
 ## Commands
 
