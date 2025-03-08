@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: DruidEclipseMonitor
+## Notes: Heads up display for Balance Druid eclipse procs (TWoW).
+## Version: 0.1.0
+## SavedVariables: DruidEclipseMonitor_x, DruidEclipseMonitor_y, DruidEclipseMonitor_width, DruidEclipseMonitor_height, DruidEclipseMonitor_sound, DruidEclipseMonitor_invertCooldown
+
+DruidEclipseMonitor.lua
