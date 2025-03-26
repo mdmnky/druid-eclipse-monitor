@@ -4,6 +4,7 @@ DruidEclipseMonitor = CreateFrame("Frame", "DruidEclipseMonitor", UIParent);
 
 DruidEclipseMonitor:RegisterEvent("ADDON_LOADED")
 DruidEclipseMonitor:RegisterEvent("PLAYER_AURAS_CHANGED")
+DruidEclipseMonitor:RegisterEvent("PLAYER_DEAD")
 DruidEclipseMonitor:RegisterEvent("CHAT_MSG_SPELL_SELF_DAMAGE")
 DruidEclipseMonitor:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_BUFFS")
 DruidEclipseMonitor:RegisterEvent("CHAT_MSG_SPELL_PERIODIC_SELF_DAMAGE")
@@ -553,6 +554,13 @@ function DruidEclipseMonitorParseLog(event, message)
 	end
 end
 
+function DruidEclipseMonitorResetTimers(event)
+	for index, frame in pairs(DruidEclipseMonitor_frames) do
+		frame:Hide()
+		frame.timer.text:SetText("")
+	end
+end
+
 function EM_GetPlayerBuff(i)
 	local texture, count, id = UnitBuff("player", i)
 	return texture, count, id
@@ -576,6 +584,8 @@ function DruidEclipseMonitor:OnEvent()
 		DruidEclipseMonitorParseLog(event, arg1)
 	elseif event == "PLAYER_AURAS_CHANGED" then
 		DruidEclipseMonitorScanAuras(event)
+	elseif event == "PLAYER_DEAD" then
+		DruidEclipseMonitorResetTimers(event)
 	end
 end
 
