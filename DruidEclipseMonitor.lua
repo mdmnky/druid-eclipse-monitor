@@ -440,7 +440,7 @@ function DruidEclipseMonitorCreateFrame(name, data)
 			if timeleft <= 3 then
 				timeleftTrunc = math.floor(timeleft * 10) / 10
 
-				if math.fmod(timeleftTrunc, 1) == 0 then
+				if timeleftTrunc == math.floor(timeleftTrunc) then
 					timeleftTrunc = timeleftTrunc .. ".0"
 				end
 			end
