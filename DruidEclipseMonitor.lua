@@ -47,8 +47,9 @@ DruidEclipseMonitorAuras = {
 		tint = DruidEclipseMonitor_tint_nature,
 		duration = 15,
 		log = {
-			start = "You gain Nature Eclipse",
-			stop = "Nature Eclipse fades from you",
+			start = "You are afflicted by Arcane Solstice",
+			--start = "You gain Nature Eclipse",
+			--stop = "Nature Eclipse fades from you",
 		},
 		sound = {
 			start = "Interface\\Addons\\DruidEclipseMonitor\\sounds\\eclipse-nature.ogg",
@@ -77,8 +78,9 @@ DruidEclipseMonitorAuras = {
 		tint = DruidEclipseMonitor_tint_arcane,
 		duration = 15,
 		log = {
-			start = "You gain Arcane Eclipse",
-			stop = "Arcane Eclipse fades from you",
+			start = "You are afflicted by Natural Solstice",
+			--start = "You gain Arcane Eclipse",
+			--stop = "Arcane Eclipse fades from you",
 		},
 		sound = {
 			start = "Interface\\Addons\\DruidEclipseMonitor\\sounds\\eclipse-arcane.ogg",
@@ -437,7 +439,9 @@ function DruidEclipseMonitorCreateFrame(name, data)
 			local timeleft = data.duration - (GetTime() - frame.timer.timeStarted)
 			local timeleftTrunc = math.floor(timeleft)
 
-			if timeleft <= 3 then
+			if timeleft <= 0 then
+				DruidEclipseMonitor_frameDeactivate(name, GetTime())
+			elseif timeleft <= 3 then
 				timeleftTrunc = math.floor(timeleft * 10) / 10
 
 				if timeleftTrunc == math.floor(timeleftTrunc) then
@@ -483,7 +487,7 @@ function DruidEclipseMonitor_frameDeactivate(name, timestamp)
 end
 
 function DruidEclipseMonitorScanAuras(event)
-	local i = i or 1;
+	local i = 1;
 	while true do
 		local texture, stacks, id = UnitBuff("player", i) -- 'id' is only provided if superwow is installed.
 
@@ -491,7 +495,7 @@ function DruidEclipseMonitorScanAuras(event)
 			break;
 		end
 
-		demondebug(id .. " - " .. texture .. " - " .. stacks)
+		--demondebug(id .. " - " .. texture .. " - " .. stacks)
 
 		for name, data in pairs(DruidEclipseMonitorAuras) do
 			if string.find(name, "Boon") then
@@ -505,7 +509,7 @@ function DruidEclipseMonitorScanAuras(event)
 						DruidEclipseMonitor_frames[name].timer:Reset()
 					end
 
-					if stacks ~= DruidEclipseMonitor_frames[name].stacks then
+					--if stacks ~= DruidEclipseMonitor_frames[name].stacks then
 						DruidEclipseMonitor_frames[name].stacks = stacks
 
 						if stacks == 1 then
@@ -515,7 +519,7 @@ function DruidEclipseMonitorScanAuras(event)
 						elseif stacks == 3 then
 							DruidEclipseMonitor_frames[name].icon:SetTexture("Interface\\Addons\\DruidEclipseMonitor\\textures\\boon-pip-3.tga")
 						end
-					end
+					--end
 				end
 			end
 		end
