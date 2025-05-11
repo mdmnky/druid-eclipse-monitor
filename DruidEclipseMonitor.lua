@@ -380,11 +380,17 @@ function DruidEclipseMonitorCreateFrame(name, data)
 		frame:SetPoint(data.position, data.offset.x, data.offset.y)
 	end
 
+	local icon_alpha = 1
+	local timer_alpha = 1
+
+	if data.icon.alpha ~= nil then icon_alpha = data.icon.alpha end
+	if data.timer.alpha ~= nil then timer_alpha = data.timer.alpha end
+
 	-- ICON
 	frame.icon = frame:CreateTexture(nil, "OVERLAY")
 	frame.icon:SetPoint('TOPLEFT', 1, -1)
 	frame.icon:SetPoint('BOTTOMRIGHT', -1, 1)
-	frame.icon:SetAlpha(data.icon.alpha)
+	frame.icon:SetAlpha(icon_alpha)
 	frame.icon:SetTexture(data.icon.texture)
 	frame.icon:SetTexCoord(0,1,0,1)
 
@@ -423,7 +429,7 @@ function DruidEclipseMonitorCreateFrame(name, data)
 	end
 
 	frame.timer.text:SetFont("Interface\\Addons\\DruidEclipseMonitor\\fonts\\PT-Sans-Narrow-Bold.TTF", data.timer.size)
-	frame.timer.text:SetTextColor(255, 255, 255, 1)
+	frame.timer.text:SetTextColor(255, 255, 255, timer_alpha)
 	frame.timer.text:SetShadowColor(0,0,0,1)
 	frame.timer.text:SetShadowOffset(1, -1)
 	frame.timer.text:SetJustifyH("CENTER")
