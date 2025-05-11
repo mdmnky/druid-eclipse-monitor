@@ -430,18 +430,13 @@ function DruidEclipseMonitorCreateFrame(name, data)
 
 	frame.timer.text:SetFont("Interface\\Addons\\DruidEclipseMonitor\\fonts\\PT-Sans-Narrow-Bold.TTF", data.timer.size)
 	frame.timer.text:SetTextColor(255, 255, 255, timer_alpha)
-	frame.timer.text:SetShadowColor(0,0,0,1)
-	frame.timer.text:SetShadowOffset(1, -1)
 	frame.timer.text:SetJustifyH("CENTER")
 	frame.timer.text:SetText("")
 
-	if string.find(name, "Boon") then
-		frame.timer.text:SetTextColor(0,0,0,1)
-		frame.timer.text:SetShadowColor(0,0,0,0)
-	end
-
 	if data.timer.color ~= nil then
 		frame.timer.text:SetTextColor(data.timer.color.r, data.timer.color.g, data.timer.color.b, timer_alpha)
+	else
+		frame.timer.text:SetShadowOffset(1, -1)
 		frame.timer.text:SetShadowColor(0,0,0,.8)
 	end
 
