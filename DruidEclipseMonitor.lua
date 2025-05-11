@@ -775,7 +775,7 @@ function DruidEclipseMonitor_ProcessSlashArgs(arg)
 end
 
 function demonprint(arg1)
-	DEFAULT_CHAT_FRAME:AddMessage("|cFF37d792DEMon|r: "..arg1)
+	DEFAULT_CHAT_FRAME:AddMessage("|cFF33FFAFDEMon|r: "..arg1)
 end
 
 function demondebug(arg1)
