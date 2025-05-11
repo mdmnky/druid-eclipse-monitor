@@ -619,8 +619,6 @@ function DruidEclipseMonitor:Command_Height(height)
 		DruidEclipseMonitor_height = tonumber(height)
 
 		DruidEclipseMonitor:SetHeight(DruidEclipseMonitor_height)
-		DruidEclipseMonitor_frames["Nature Eclipse"]:SetHeight(DruidEclipseMonitor_height)
-		DruidEclipseMonitor_frames["Arcane Eclipse"]:SetHeight(DruidEclipseMonitor_height)
 
 		demonprint("Height changed from " .. old .. " to " .. DruidEclipseMonitor_height)
 	else
