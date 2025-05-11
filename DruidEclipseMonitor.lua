@@ -780,7 +780,7 @@ end
 
 function demondebug(arg1)
 	if not DruidEclipseMonitor_debug then return end
-	demonprint("|cFF00FFFF[debug]|r "..arg1)
+	DEFAULT_CHAT_FRAME:AddMessage("|cFFe65636DEMon|r: "..arg1)
 end
 
 
