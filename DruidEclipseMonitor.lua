@@ -94,6 +94,7 @@ DruidEclipseMonitorAuras = {
 	["Natural Boon"] = {
 		enabled = true,
 		position = "LEFT",
+		strata = "HIGH",
 		offset = { x = -22, y = 0 },
 		icon = {
 			size = 46,
@@ -122,6 +123,7 @@ DruidEclipseMonitorAuras = {
 	["Astral Boon"] = {
 		enabled = true,
 		position = "RIGHT",
+		strata = "HIGH",
 		offset = { x = 22, y = 0 },
 		icon = {
 			size = 46,
@@ -408,8 +410,9 @@ function DruidEclipseMonitorCreateFrame(name, data)
 
 	frame.stacks = 0
 
-	if string.find(name, "Boon") then
-		frame:SetFrameStrata("HIGH")
+
+	if data.strata ~= nil then
+		frame:SetFrameStrata(data.strata)
 	end
 
 	-- TIMER FRAME
