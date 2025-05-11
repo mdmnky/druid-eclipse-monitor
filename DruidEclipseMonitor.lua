@@ -38,6 +38,7 @@ DruidEclipseMonitorAuras = {
 		icon = {
 			size = { width = 100, height = 200 },
 			texture = "Interface\\Addons\\DruidEclipseMonitor\\textures\\eclipse-arc.tga",
+			textureCoord = { 0, .5, 0, 1 },
 			color = DruidEclipseMonitor_color.nature,
 			alpha = 1,
 		},
@@ -50,7 +51,6 @@ DruidEclipseMonitorAuras = {
 			texture = "Interface\\Icons\\Spell_Nature_AbolishMagic",
 			type = "buff",
 		},
-		textureCoord = { 0, .5, 0, 1 },
 		duration = 15,
 		log = {
 			start = "You gain Nature Eclipse",
@@ -68,6 +68,7 @@ DruidEclipseMonitorAuras = {
 		icon = {
 			size = { width = 100, height = 200 },
 			texture = "Interface\\Addons\\DruidEclipseMonitor\\textures\\eclipse-arc.tga",
+			textureCoord = { .5, 1, 0, 1 },
 			color = DruidEclipseMonitor_color.arcane,
 			alpha = 1,
 		},
@@ -80,7 +81,6 @@ DruidEclipseMonitorAuras = {
 			texture = "Interface\\Icons\\Spell_Nature_WispSplode",
 			type = "buff",
 		},
-		textureCoord = { .5, 1, 0, 1 },
 		duration = 15,
 		log = {
 			start = "You gain Arcane Eclipse",
@@ -278,6 +278,7 @@ DruidEclipseMonitorAuras = {
 		icon = {
 			size = 32,
 			texture = "Interface\\Icons\\Spell_Shadow_ManaBurn",
+			textureCoord = { 0, 1, 0, 1 },
 			alpha = .8,
 		},
 		timer = {
@@ -391,8 +392,8 @@ function DruidEclipseMonitorCreateFrame(name, data)
 		frame.icon:SetTexCoord(1,0,0,1)
 	end
 
-	if data.textureCoord ~= nil then
-		frame.icon:SetTexCoord(data.textureCoord[1], data.textureCoord[2], data.textureCoord[3], data.textureCoord[4])
+	if data.icon.textureCoord ~= nil then
+		frame.icon:SetTexCoord(data.icon.textureCoord[1], data.icon.textureCoord[2], data.icon.textureCoord[3], data.icon.textureCoord[4])
 	end
 
 	if data.icon.color ~= nil then
