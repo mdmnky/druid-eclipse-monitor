@@ -655,6 +655,7 @@ function DruidEclipseMonitor:Command_Reset(confirmed)
 	DruidEclipseMonitor_y = DruidEclipseMonitor_default_y
 	DruidEclipseMonitor_width = DruidEclipseMonitor_default_width
 	DruidEclipseMonitor_height = DruidEclipseMonitor_default_height
+	DruidEclipseMonitor_sound = DruidEclipseMonitor_default_sound
 
 	DruidEclipseMonitor:SetPoint("CENTER", DruidEclipseMonitor_x, DruidEclipseMonitor_y)
 	DruidEclipseMonitor:SetWidth(DruidEclipseMonitor_width)
