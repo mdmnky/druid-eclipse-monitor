@@ -671,7 +671,7 @@ function DruidEclipseMonitor:Command_Demo(arg)
 			DruidEclipseMonitor:SetBackdropColor(0,0,0,.5)
 		end
 	else
-		demonprint("Hiding demo.")
+		demonprint("Hiding demo. |cFFD54B3FConsider reloading your UI to avoid timer issues.|r")
 		DruidEclipseMonitor:SetBackdropColor(0,0,0,0)
 	end
 
