@@ -720,14 +720,15 @@ function DruidEclipseMonitor.slash(arg1)
 
 	if command == nil or command == "" then
 		local invertMode = DruidEclipseMonitor_invertCooldown and "Inverted" or "Standard"
+		local soundMode = DruidEclipseMonitor_sound and "Disabled" or "Enabled"
 
 		demonprint("Available commands:")
 		demonprint("|cFFFFFF00 /demon demo|r - Toggle HUD visibilty for editing")
 		demonprint("|cFFFFFF00 /demon move <x> <y>|r - Move to position. " .. "|cFFAAAAAA("..DruidEclipseMonitor_x .. ', '.. DruidEclipseMonitor_y ..")|r")
 		demonprint("|cFFFFFF00 /demon width <width>|r - Set width. " .. "|cFFAAAAAA("..DruidEclipseMonitor_width..")|r")
 		demonprint("|cFFFFFF00 /demon height <height>|r - Set height. " .. "|cFFAAAAAA("..DruidEclipseMonitor_height..")|r")
-		demonprint("|cFFFFFF00 /demon invertcd|r Change placement of eclipse cooldown timers. " .. "|cFFAAAAAA("..invertMode..")|r")
-		demonprint("|cFFFFFF00 /demon sound|r - Toggle sounds")
+		demonprint("|cFFFFFF00 /demon invertcd|r - Change placement of eclipse cooldown timers. " .. "|cFFAAAAAA("..invertMode..")|r")
+		demonprint("|cFFFFFF00 /demon sound|r - Toggle sounds. " .. "|cFFAAAAAA("..soundMode..")|r")
 		demonprint("|cFFFFFF00 /demon reset|r - Reset settings")
 	else
 		if command == "demo" then
