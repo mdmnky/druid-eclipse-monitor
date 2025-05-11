@@ -276,15 +276,14 @@ DruidEclipseMonitorAuras = {
 	["Clearcasting"] = {
 		enabled = false,
 		position = "BOTTOM",
-		offset = { x = 0, y = 16 },
+		offset = { x = 0, y = 0 },
 		icon = {
-			size = 32,
-			texture = "Interface\\Icons\\Spell_Shadow_ManaBurn",
-			textureCoord = { 0, 1, 0, 1 },
-			alpha = .8,
+			size = 46,
+			texture = "Interface\\Addons\\DruidEclipseMonitor\\textures\\scribble.tga",
+			alpha = .5,
 		},
 		timer = {
-			size = 14
+			size = 14,
 		},
 		buff = {
 			id = 16870,
@@ -295,6 +294,30 @@ DruidEclipseMonitorAuras = {
 		log = {
 			start = "You gain Clearcasting",
 			stop = "Clearcasting fades from you",
+		},
+		sound = nil,
+	},
+	["Spell Blasting"] = {
+		enabled = false,
+		position = "TOP",
+		offset = { x = 0, y = 0 },
+		icon = {
+			size = 46,
+			texture = "Interface\\Addons\\DruidEclipseMonitor\\textures\\scribble.tga",
+			alpha = .5,
+		},
+		timer = {
+			size = 14,
+		},
+		buff = {
+			id = 25907,
+			texture = "Interface\\Icons\\Spell_Lightning_LightningBolt01",
+			type = "buff",
+		},
+		duration = 10,
+		log = {
+			start = "You gain Spell Blasting",
+			stop = "Spell Blasting fades from you",
 		},
 		sound = nil,
 	},
