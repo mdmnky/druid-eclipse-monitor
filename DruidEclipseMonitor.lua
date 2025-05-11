@@ -21,8 +21,14 @@ DruidEclipseMonitor_default_invertCooldown = false
 
 DruidEclipseMonitor_demo = false
 DruidEclipseMonitor_debug = false
-DruidEclipseMonitor_tint_nature = { r = .584, g = 1, b = .306 }
-DruidEclipseMonitor_tint_arcane = { r = .243, g = .812, b = 1 }
+
+DruidEclipseMonitor_color = {
+	nature = { r = .584, g = 1, b = .306 },
+	arcane = { r = .243, g = .812, b = 1 },
+	text_dark = { r = 0, g = 0, b = 0 },
+	debug = { r = 1, g = .1, b = .1 },
+	debug_alt = { r = .1, g = .1, b = 1 },
+}
 
 DruidEclipseMonitorAuras = {
 	["Nature Eclipse"] = {
@@ -32,6 +38,7 @@ DruidEclipseMonitorAuras = {
 		icon = {
 			size = { width = 100, height = 200 },
 			texture = "Interface\\Addons\\DruidEclipseMonitor\\textures\\eclipse-arc.tga",
+			color = DruidEclipseMonitor_color.nature,
 			alpha = 1,
 		},
 		timer = {
@@ -44,7 +51,6 @@ DruidEclipseMonitorAuras = {
 			type = "buff",
 		},
 		textureCoord = { 0, .5, 0, 1 },
-		tint = DruidEclipseMonitor_tint_nature,
 		duration = 15,
 		log = {
 			start = "You gain Nature Eclipse",
@@ -62,6 +68,7 @@ DruidEclipseMonitorAuras = {
 		icon = {
 			size = { width = 100, height = 200 },
 			texture = "Interface\\Addons\\DruidEclipseMonitor\\textures\\eclipse-arc.tga",
+			color = DruidEclipseMonitor_color.arcane,
 			alpha = 1,
 		},
 		timer = {
@@ -74,7 +81,6 @@ DruidEclipseMonitorAuras = {
 			type = "buff",
 		},
 		textureCoord = { .5, 1, 0, 1 },
-		tint = DruidEclipseMonitor_tint_arcane,
 		duration = 15,
 		log = {
 			start = "You gain Arcane Eclipse",
@@ -92,18 +98,19 @@ DruidEclipseMonitorAuras = {
 		icon = {
 			size = 46,
 			texture = "Interface\\Addons\\DruidEclipseMonitor\\textures\\boon-pip-1.tga",
+			color = DruidEclipseMonitor_color.nature,
 			alpha = 1,
 		},
 		timer = {
 			size = 14,
-			offset = { x = 6, y = 0 }
+			offset = { x = 6, y = 0 },
+			color = DruidEclipseMonitor_color.text_dark,
 		},
 		buff = {
 			id = 51671,
 			texture = "Interface\\Icons\\Spell_Nature_AbolishMagic",
 			type = "buff",
 		},
-		tint = DruidEclipseMonitor_tint_nature,
 		duration = 60,
 		log = {
 			start = "You gain Natural Boon",
@@ -119,18 +126,19 @@ DruidEclipseMonitorAuras = {
 		icon = {
 			size = 46,
 			texture = "Interface\\Addons\\DruidEclipseMonitor\\textures\\boon-pip-1.tga",
+			color = DruidEclipseMonitor_color.arcane,
 			alpha = 1,
 		},
 		timer = {
 			size = 14,
-			offset = { x = -6, y = 0 }
+			offset = { x = -6, y = 0 },
+			color = DruidEclipseMonitor_color.text_dark,
 		},
 		buff = {
 			id = 51432,
 			texture = "Interface\\Icons\\Spell_Arcane_StarFire",
 			type = "buff",
 		},
-		tint = DruidEclipseMonitor_tint_arcane,
 		duration = 60,
 		log = {
 			start = "You gain Astral Boon",
@@ -149,14 +157,14 @@ DruidEclipseMonitorAuras = {
 			alpha = .3,
 		},
 		timer = {
-			size = 14
+			size = 14,
+			color = DruidEclipseMonitor_color.arcane,
 		},
 		buff = {
 			id = 53213,
 			texture = "Interface\\Icons\\Spell_Nature_AbolishMagic",
 			type = "debuff",
 		},
-		tint = DruidEclipseMonitor_tint_arcane,
 		duration = 30,
 		log = {
 			start = "You are afflicted by Natural Solstice",
@@ -174,14 +182,14 @@ DruidEclipseMonitorAuras = {
 			alpha = .3,
 		},
 		timer = {
-			size = 14
+			size = 14,
+			color = DruidEclipseMonitor_color.nature,
 		},
 		buff = {
 			id = 53212,
 			texture = "Interface\\Icons\\Spell_Arcane_StarFire",
 			type = "debuff",
 		},
-		tint = DruidEclipseMonitor_tint_nature,
 		duration = 30,
 		log = {
 			start = "You are afflicted by Arcane Solstice",
@@ -199,14 +207,14 @@ DruidEclipseMonitorAuras = {
 			alpha = .3,
 		},
 		timer = {
-			size = 14
+			size = 14,
+			color = DruidEclipseMonitor_color.nature,
 		},
 		buff = {
 			id = 53213,
 			texture = "Interface\\Icons\\Spell_Nature_AbolishMagic",
 			type = "debuff",
 		},
-		tint = DruidEclipseMonitor_tint_nature,
 		duration = 30,
 		log = {
 			start = "You are afflicted by Natural Solstice",
@@ -224,14 +232,14 @@ DruidEclipseMonitorAuras = {
 			alpha = .3,
 		},
 		timer = {
-			size = 14
+			size = 14,
+			color = DruidEclipseMonitor_color.arcane,
 		},
 		buff = {
 			id = 53212,
 			texture = "Interface\\Icons\\Spell_Arcane_StarFire",
 			type = "debuff",
 		},
-		tint = DruidEclipseMonitor_tint_arcane,
 		duration = 30,
 		log = {
 			start = "You are afflicted by Arcane Solstice",
@@ -249,7 +257,7 @@ DruidEclipseMonitorAuras = {
 			alpha = .8,
 		},
 		timer = {
-			size = 14
+			size = 14,
 		},
 		buff = {
 			id = 16886,
@@ -387,8 +395,8 @@ function DruidEclipseMonitorCreateFrame(name, data)
 		frame.icon:SetTexCoord(data.textureCoord[1], data.textureCoord[2], data.textureCoord[3], data.textureCoord[4])
 	end
 
-	if data.tint ~= nil then
-		frame.icon:SetVertexColor(data.tint.r, data.tint.g, data.tint.b)
+	if data.icon.color ~= nil then
+		frame.icon:SetVertexColor(data.icon.color.r, data.icon.color.g, data.icon.color.b)
 	end
 
 	frame.stacks = 0
@@ -425,8 +433,8 @@ function DruidEclipseMonitorCreateFrame(name, data)
 		frame.timer.text:SetShadowColor(0,0,0,0)
 	end
 
-	if string.find(name, "Solstice") then
-		frame.timer.text:SetTextColor(frame.data.tint.r, frame.data.tint.g,	frame.data.tint.b, 1)
+	if data.timer.color ~= nil then
+		frame.timer.text:SetTextColor(data.timer.color.r, data.timer.color.g, data.timer.color.b, timer_alpha)
 		frame.timer.text:SetShadowColor(0,0,0,.8)
 	end
 
