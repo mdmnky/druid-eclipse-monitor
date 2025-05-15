@@ -560,9 +560,6 @@ function DruidEclipseMonitorScanAuras(event)
 end
 
 function DruidEclipseMonitorParseLog(event, message)
-  demondebug("|cFFF5F54A ".. event ..":|r " .. arg1)
-	demondebug(message)
-
 	local matchFound = false
 	local timestamp = GetTime()
 
@@ -570,6 +567,7 @@ function DruidEclipseMonitorParseLog(event, message)
 		if frame.data.log.start ~= nil and not matchFound then
 			local startPos, endPos = string.find(message, frame.data.log.start)
 			if startPos then
+				demondebug('"'..id..'" match (start) for "'..message..'"')
 				-- matchFound = true
 				DruidEclipseMonitor_frameActivate(id, timestamp)
 			end
@@ -578,6 +576,7 @@ function DruidEclipseMonitorParseLog(event, message)
 		if frame.data.log.stop ~= nil and not matchFound then
 			local startPos, endPos = string.find(message, frame.data.log.stop)
 			if startPos then
+				demondebug('"'..id..'" match (stop) for "'..message..'"')
 				-- matchFound = true
 				DruidEclipseMonitor_frameDeactivate(id, timestamp)
 			end
