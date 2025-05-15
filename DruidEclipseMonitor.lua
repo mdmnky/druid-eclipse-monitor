@@ -605,6 +605,17 @@ function EM_GetPlayerDebuff(i)
 	return texture, count, id
 end
 
+function DruidEclipseMonitor_GetBuffData(id, type)
+	local PLAYER_BUFF_START_ID = 0
+	local bid = GetPlayerBuff(PLAYER_BUFF_START_ID+id, "HELPFUL")
+	local id = GetPlayerBuffID(bid)
+	local texture = GetPlayerBuffTexture(bid)
+	local stacks = GetPlayerBuffApplications(bid)
+	local remaining = GetPlayerBuffTimeLeft(bid)
+
+	return id, texture, remaining, stacks, bid
+end
+
 function DruidEclipseMonitor:OnEvent()
 	if event == "ADDON_LOADED" and arg1 == "DruidEclipseMonitor" then
 		DruidEclipseMonitor:Init()
