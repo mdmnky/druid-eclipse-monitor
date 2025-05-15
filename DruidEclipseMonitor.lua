@@ -448,12 +448,7 @@ function DruidEclipseMonitorCreateFrame(name, data)
   -- TIMER CLOCK
 	frame.timer.text = frame:CreateFontString(nil, "OVERLAY")
 
-	if data.timer.offset ~= nil then
-		frame.timer.text:SetPoint("CENTER", frame, "CENTER", data.timer.offset.x, data.timer.offset.y)
-	else
-		frame.timer.text:SetPoint("CENTER", frame, "CENTER", 0, 0)
-	end
-
+	frame.timer.text:SetPoint("CENTER", frame, "CENTER", 0, 0)
 	frame.timer.text:SetFont("Interface\\Addons\\DruidEclipseMonitor\\fonts\\PT-Sans-Narrow-Bold.TTF", data.timer.size)
 	frame.timer.text:SetTextColor(255, 255, 255, timer_alpha)
 	frame.timer.text:SetJustifyH("CENTER")
@@ -464,6 +459,10 @@ function DruidEclipseMonitorCreateFrame(name, data)
 	else
 		frame.timer.text:SetShadowOffset(1, -1)
 		frame.timer.text:SetShadowColor(0,0,0,.8)
+	end
+
+	if data.timer.offset ~= nil then
+		frame.timer.text:SetPoint("CENTER", frame, "CENTER", data.timer.offset.x, data.timer.offset.y)
 	end
 
 	frame.timer:SetScript("OnUpdate", function()
