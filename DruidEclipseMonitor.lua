@@ -53,8 +53,8 @@ DruidEclipseMonitorAuras = {
 		},
 		duration = 15,
 		log = {
-			start = "You gain Nature Eclipse",
-			stop = "Nature Eclipse fades from you",
+			start = "You are afflicted by Arcane Solstice", -- Track debuff start
+			stop = "Nature Eclipse fades from you", -- Track buff end
 		},
 		sound = {
 			start = "Interface\\Addons\\DruidEclipseMonitor\\sounds\\eclipse-nature.ogg",
@@ -83,8 +83,8 @@ DruidEclipseMonitorAuras = {
 		},
 		duration = 15,
 		log = {
-			start = "You gain Arcane Eclipse",
-			stop = "Arcane Eclipse fades from you",
+			start = "You are afflicted by Natural Solstice", -- Track debuff start
+			stop = "Arcane Eclipse fades from you", -- Track buff end
 		},
 		sound = {
 			start = "Interface\\Addons\\DruidEclipseMonitor\\sounds\\eclipse-arcane.ogg",
