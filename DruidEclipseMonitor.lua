@@ -44,7 +44,8 @@ DruidEclipseMonitorAuras = {
 		},
 		timer = {
 			size = 26,
-			offset = { x = 8, y = 0 }
+			offset = { x = 8, y = 0 },
+			deactivateFrameOnExpriation = true -- buff may be over cap when ends, so rely on timer as well.
 		},
 		buff = {
 			id = 51042,
@@ -74,7 +75,8 @@ DruidEclipseMonitorAuras = {
 		},
 		timer = {
 			size = 26,
-			offset = { x = -8, y = 0 }
+			offset = { x = -8, y = 0 },
+			deactivateFrameOnExpriation = true -- buff may be over cap when ends, so rely on timer as well.
 		},
 		buff = {
 			id = 51443,
@@ -441,8 +443,12 @@ function DruidEclipseMonitorCreateFrame(name, data)
 	-- TIMER FRAME
 	frame.timer = CreateFrame("Frame", "EMTimer"..name, UIParent)
 
-	function frame.timer:Reset()
-	 self.timeStarted = GetTime()
+	function frame.timer:Reset(duration)
+		if duration then
+			self.timeEnd = GetTime() + duration
+		else
+			self.timeEnd = GetTime() + data.duration
+		end
   end
 
   -- TIMER CLOCK
@@ -468,19 +474,14 @@ function DruidEclipseMonitorCreateFrame(name, data)
 	frame.timer:SetScript("OnUpdate", function()
 		if ( frame.timer.tick or .1) > GetTime() then return else frame.timer.tick = GetTime() + .1 end
 
-		if frame.timer.timeStarted ~= nil and frame.timer.timeStarted > 0 then
-			local timeleft = data.duration - (GetTime() - frame.timer.timeStarted)
-			local timeleftTrunc = math.floor(timeleft)
+		if frame.timer.timeEnd ~= nil and frame.timer.timeEnd > 0 then
+			local timeleft = frame.timer.timeEnd - GetTime()
 
-			if timeleft <= 3 then
-				timeleftTrunc = math.floor(timeleft * 10) / 10
+			frame.timer.text:SetText(DruidEclipseMonitor_formatTime(timeleft))
 
-				if timeleftTrunc == math.floor(timeleftTrunc) then
-					timeleftTrunc = timeleftTrunc .. ".0"
-				end
+			if data.timer.deactivateFrameOnExpriation == true and timeleft <= 0 then
+				DruidEclipseMonitor_frameDeactivate(name)
 			end
-
-			frame.timer.text:SetText(timeleftTrunc)
 		end
 	end)
 
@@ -488,14 +489,28 @@ function DruidEclipseMonitorCreateFrame(name, data)
 	return frame
 end
 
-function DruidEclipseMonitor_frameActivate(name, timestamp)
+function DruidEclipseMonitor_formatTime(time)
+	local timeTrunc = math.floor(time)
+
+	if time <= 3 then
+		timeTrunc = math.floor(time * 10) / 10
+
+		if timeTrunc == math.floor(timeTrunc) then
+			timeTrunc = timeTrunc .. ".0"
+		end
+	end
+
+	return timeTrunc
+end
+
+function DruidEclipseMonitor_frameActivate(name)
 	demondebug("Activating frame: " .. name)
 	local frame = DruidEclipseMonitor_frames[name]
 	local data = DruidEclipseMonitorAuras[name]
 
 	frame:Show()
 	frame.timer:Show()
-	frame.timer.timeStarted = GetTime()
+	frame.timer:Reset()
 	frame.stacks = 1
 
 	if DruidEclipseMonitor_sound == "on" and data.sound ~= nil and data.sound.start ~= nil then
@@ -503,7 +518,7 @@ function DruidEclipseMonitor_frameActivate(name, timestamp)
 	end
 end
 
-function DruidEclipseMonitor_frameDeactivate(name, timestamp)
+function DruidEclipseMonitor_frameDeactivate(name)
 	local frame = DruidEclipseMonitor_frames[name]
 	local data = DruidEclipseMonitorAuras[name]
 
@@ -527,20 +542,15 @@ function DruidEclipseMonitorScanAuras(event)
 			break;
 		end
 
-		demondebug(id .. ' - ' .. remaining .. 's' .. ' passive:' .. untilCancelled)
-
 		for name, data in pairs(DruidEclipseMonitorAuras) do
 			if string.find(name, "Boon") then
 
 				if data.buff.id == id then
-					demondebug("Found a match for " .. name .. " (" .. stacks .. ")")
+					-- UPDATE THE TIMER
+					DruidEclipseMonitor_frames[name].timer:Reset(remaining)
 
-					if stacks > DruidEclipseMonitor_frames[name].stacks then
-						demondebug(name .. ': Increased from ' .. DruidEclipseMonitor_frames[name].stacks .. ' to ' .. stacks .. ". Resetting timer.")
-						DruidEclipseMonitor_frames[name].timer:Reset()
-					end
-
-					if stacks ~= DruidEclipseMonitor_frames[name].stacks then
+					-- UPDATE THE STACK TEXTURES
+					if DruidEclipseMonitor_frames[name].stacks ~= stacks then
 						DruidEclipseMonitor_frames[name].stacks = stacks
 
 						if stacks == 1 then
