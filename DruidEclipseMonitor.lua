@@ -518,22 +518,22 @@ function DruidEclipseMonitor_frameDeactivate(name, timestamp)
 end
 
 function DruidEclipseMonitorScanAuras(event)
-	local i = i or 1;
+	local i = 0;
+
 	while true do
-		local texture, stacks, id = UnitBuff("player", i) -- 'id' is only provided if superwow is installed.
+		local id, texture, remaining, stacks, untilCancelled, bid = DruidEclipseMonitor_GetBuffData(i, "HELPFUL|HARMFUL|PASSIVE")
 
 		if not texture then
 			break;
 		end
 
-		demondebug(id .. " - " .. texture .. " - " .. stacks)
+		demondebug(id .. ' - ' .. remaining .. 's' .. ' passive:' .. untilCancelled)
 
 		for name, data in pairs(DruidEclipseMonitorAuras) do
 			if string.find(name, "Boon") then
 
 				if data.buff.id == id then
 					demondebug("Found a match for " .. name .. " (" .. stacks .. ")")
-
 
 					if stacks > DruidEclipseMonitor_frames[name].stacks then
 						demondebug(name .. ': Increased from ' .. DruidEclipseMonitor_frames[name].stacks .. ' to ' .. stacks .. ". Resetting timer.")
@@ -607,13 +607,13 @@ end
 
 function DruidEclipseMonitor_GetBuffData(id, type)
 	local PLAYER_BUFF_START_ID = 0
-	local bid = GetPlayerBuff(PLAYER_BUFF_START_ID+id, "HELPFUL")
+	local bid, untilCancelled = GetPlayerBuff(PLAYER_BUFF_START_ID+id, type)
 	local id = GetPlayerBuffID(bid)
 	local texture = GetPlayerBuffTexture(bid)
 	local stacks = GetPlayerBuffApplications(bid)
 	local remaining = GetPlayerBuffTimeLeft(bid)
 
-	return id, texture, remaining, stacks, bid
+	return id, texture, remaining, stacks, untilCancelled, bid
 end
 
 function DruidEclipseMonitor:OnEvent()
