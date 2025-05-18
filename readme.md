@@ -13,8 +13,3 @@ Use `/demon` or `/eclipsemonitor` to view all commands.
 - **SuperWoW**:
   - https://github.com/balakethelock/SuperWoW
   - https://github.com/pepopo978/SuperwowInstallation
- 
-## Todo
-
-- Improve timers
-- Remove dependency on SuperWoW
