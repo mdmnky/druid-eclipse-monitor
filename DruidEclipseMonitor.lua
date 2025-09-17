@@ -1,5 +1,3 @@
-local has_superwow = SetAutoloot and true or false
-
 DruidEclipseMonitor = CreateFrame("Frame", "DruidEclipseMonitor", UIParent);
 
 DruidEclipseMonitor:RegisterEvent("ADDON_LOADED")
@@ -327,7 +325,6 @@ DruidEclipseMonitorAuras = {
 
 
 function DruidEclipseMonitor:Init(source)
-	if not has_superwow then demonprint("This addon requires SuperWoW to function.") return end
 	if UnitClass("player") ~= "Druid" then demonprint("You are not a Druid. Goodbye.") return end
 
 	DruidEclipseMonitor_x = DruidEclipseMonitor_x or DruidEclipseMonitor_default_x
@@ -618,9 +615,7 @@ end
 function DruidEclipseMonitor_GetBuffData(id, type)
 	local PLAYER_BUFF_START_ID = 0
 	local bid, untilCancelled = GetPlayerBuff(PLAYER_BUFF_START_ID+id, type)
-	local id = GetPlayerBuffID(bid)
-	local texture = GetPlayerBuffTexture(bid)
-	local stacks = GetPlayerBuffApplications(bid)
+	local texture, stacks, id = UnitBuff("player", bid)
 	local remaining = GetPlayerBuffTimeLeft(bid)
 
 	return id, texture, remaining, stacks, untilCancelled, bid
