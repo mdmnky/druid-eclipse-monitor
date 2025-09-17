@@ -1,6 +1,6 @@
 # Druid Eclipse Monitor
 
-Heads up display for Balance Druid eclipse procs (TWoW).
+Heads up display for Balance Druid eclipse procs.
 
 ![Image showing preview of HUD interface](https://github.com/mdmnky/druid-eclipse-monitor/blob/master/DruidEclipseMonitor.png?raw=true)
 
@@ -8,8 +8,3 @@ Heads up display for Balance Druid eclipse procs (TWoW).
 
 Use `/demon` or `/eclipsemonitor` to view all commands.
 
-## Requirements
-
-- **SuperWoW**:
-  - https://github.com/balakethelock/SuperWoW
-  - https://github.com/pepopo978/SuperwowInstallation
