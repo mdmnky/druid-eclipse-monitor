@@ -8,3 +8,7 @@ Heads up display for Balance Druid eclipse procs.
 
 Use `/demon` or `/eclipsemonitor` to view all commands.
 
+## Installation
+
+1. Extract to `Addons/`.
+2. Rename directory to `DruidEclipseMonitor`
